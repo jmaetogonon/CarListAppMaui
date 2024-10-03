@@ -67,9 +67,16 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.1.0" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="LoadingPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\CarDetailsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -1,16 +1,18 @@
-﻿using CarListApp.Services;
+﻿using CarListApp.Models;
+using CarListApp.Services;
 
-namespace CarListApp
+namespace CarListApp;
+#nullable disable
+public partial class App : Application
 {
-    public partial class App : Application
-    {
-        public static CarDBService CarDBService { get; private set; }
-        public App(CarDBService carService)
-        {
-            InitializeComponent();
+    public static UserInfo UserInfo;
 
-            MainPage = new AppShell();
-            CarDBService = carService;
-        }
+    public static CarDBService CarDBService { get; private set; }
+    public App(CarDBService carService)
+    {
+        InitializeComponent();
+
+        MainPage = new AppShell();
+        CarDBService = carService;
     }
 }

@@ -1,5 +1,7 @@
 ﻿using CarListApp.Models;
+using CarListApp.ViewModels;
 using Newtonsoft.Json;
+using System.Net.Http;
 using System.Net.Http.Json;
 
 namespace CarListApp.Services;
@@ -22,6 +24,7 @@ public class CarApiService
     {
         try
         {
+            await SetAuthToken();
             var response = await httpclient.GetStringAsync("/cars");
             return JsonConvert.DeserializeObject<List<Car>>(response)!;
         }
@@ -87,5 +90,28 @@ public class CarApiService
         {
             StatusMessage = "Failed to update data.";
         }
+    }
+
+    public async Task<AuthReponseModel> Login(LoginModel loginModel)
+    {
+        try
+        {
+            var response = await httpclient.PostAsJsonAsync("/login", loginModel);
+            response.EnsureSuccessStatusCode();
+            StatusMessage = "Login Successful";
+
+            return JsonConvert.DeserializeObject<AuthReponseModel>(await response.Content.ReadAsStringAsync())!;
+        }
+        catch (Exception ex)
+        {
+            StatusMessage = "Failed to login successfully.";
+            return new AuthReponseModel();
+        }
+    }
+
+    public async Task SetAuthToken()
+    {
+        var token = await SecureStorage.GetAsync("Token");
+        httpclient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
     }
 }

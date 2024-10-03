@@ -3,6 +3,7 @@ using System;
 using CarListAppApi;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarListAppApi.Migrations
 {
     [DbContext(typeof(CarListDbContext))]
-    partial class CarListDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240927151136_AddedIdentityTables")]
+    partial class AddedIdentityTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.8");
@@ -73,20 +76,6 @@ namespace CarListAppApi.Migrations
                         .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "1",
-                            Name = "Administrator",
-                            NormalizedName = "ADMINISTRATOR"
-                        },
-                        new
-                        {
-                            Id = "2",
-                            Name = "User",
-                            NormalizedName = "USER"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -174,40 +163,6 @@ namespace CarListAppApi.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "1",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "f70ea6aa-0573-4880-8c3b-c3834e7d53e1",
-                            Email = "admin",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN",
-                            NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEH9wZqEenHdmctG1tNeqFyrx6z/ly0U2+TwhYyhZ8UpNZD1qxQ9EEUDEQzCqhtY7Dg==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "7540387c-54ae-4282-b12f-44a0a7c9e11c",
-                            TwoFactorEnabled = false,
-                            UserName = "admin"
-                        },
-                        new
-                        {
-                            Id = "2",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "e9ffc377-f061-4be1-b167-a38a6d463971",
-                            Email = "user",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "USER",
-                            NormalizedUserName = "USER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOE1BVI9aecLQm+iotpMHvcvGk5L2nFZvps78MOzJt4CySTK+yw7dVffZ+9y5UN/Eg==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "429463c2-01d3-473b-bea0-217743ee1529",
-                            TwoFactorEnabled = false,
-                            UserName = "user"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -268,18 +223,6 @@ namespace CarListAppApi.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "1",
-                            RoleId = "1"
-                        },
-                        new
-                        {
-                            UserId = "2",
-                            RoleId = "2"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
